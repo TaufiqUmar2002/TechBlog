@@ -14,6 +14,7 @@ response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
 
 <!-- Bootstrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+   <link rel="stylesheet" href="<c:url value='/css/common.css'/>" />
 
 <!-- Font Awesome -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
@@ -25,28 +26,6 @@ response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
-body {
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    color: #fff;
-    background: #16a085;
-}
-
-/* Navbar */
-.navbar {
-    background: rgba(22,160,133,0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 999;
-}
-.navbar .nav-link, .navbar .navbar-brand { color: #fff; font-weight: 500; }
-.navbar .nav-link:hover { color: #e0f7f1; }
-
 /* Buttons */
 .btn-hero { margin: 5px; border-radius: 50px; padding: 10px 25px; font-weight: 500; transition: transform 0.3s, box-shadow 0.3s; }
 .btn-hero:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.25); }
@@ -199,10 +178,9 @@ footer a:hover { text-decoration: underline; }
 </div>
 
 
-<!-- Footer -->
-<footer>
-    © 2025 Tech Blog | Crafted with 💻 and ☕ by <a href="#">Taufiq Umar</a>
-</footer>
+  <div>
+      <%@ include file ="footer.jsp"%>
+  </div>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

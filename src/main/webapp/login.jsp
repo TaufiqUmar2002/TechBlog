@@ -1,6 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %> <%@ taglib
-uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@ page import
-="com.tech.helper.Message" %> <%@ page isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.tech.helper.Message" %>
+<%@ page isELIgnored="false" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,77 +10,9 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@ page import
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | Tech Blog</title>
-
-    <!-- Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-
-    <!-- Font Awesome -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-    <!-- AOS Animation -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
-    <!-- SweetAlert2 -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
+    <%@ include file ="css-links.jsp"%>
+   <link rel="stylesheet" href="<c:url value='/css/common.css'/>" />
     <style>
-      body {
-        font-family: "Poppins", sans-serif;
-        color: #fff;
-        margin: 0;
-        background: #16a085;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-
-      /* Navbar */
-      .navbar {
-        background: rgba(22, 160, 133, 0.95);
-        backdrop-filter: blur(10px);
-        position: sticky;
-        top: 0;
-        z-index: 999;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      }
-      .navbar .navbar-brand,
-      .navbar .nav-link {
-        color: #fff !important;
-        font-weight: 500;
-      }
-      .navbar .nav-link:hover {
-        color: #e0f7f1 !important;
-      }
-
-      /* Particles Canvas */
-      #particles-js {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: 0;
-      }
 
       /* Login Section */
       .login-section {
@@ -172,49 +106,10 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@ page import
       .links a:hover {
         text-decoration: underline;
       }
-
-      footer {
-        background: rgba(22, 160, 133, 0.95);
-        color: white;
-        text-align: center;
-        padding: 15px 0;
-        margin-top: auto;
-      }
     </style>
   </head>
   <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"
-          ><i class="fa fa-asterisk me-2"></i>Tech Blog</a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.jsp">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="signup.jsp">Sign Up</a>
-            </li>
-          </ul>
-          <div class="d-flex">
-            <a href="login.jsp" class="btn btn-light text-success me-2"
-              ><i class="fa fa-user"></i> Login</a
-            >
-          </div>
-        </div>
-      </div>
-    </nav>
-
+    <%@ include file="navbar.jsp"%>
     <!-- Login Section -->
     <div class="login-section">
       <div id="particles-js"></div>
@@ -280,10 +175,9 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@ page import
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-      © 2025 Tech Blog | Crafted with 💻 and ☕ by <a href="#">Taufiq Umar</a>
-    </footer>
+    <div>
+      <%@ include file ="footer.jsp"%>
+    </div>
 
     <!-- JS Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -313,6 +207,5 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@ page import
         retina_detect: true,
       });
     </script>
-    // AJAX Login with SweetAlert
   </body>
 </html>

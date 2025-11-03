@@ -1,0 +1,47 @@
+ body {
+        font-family: "Poppins", sans-serif;
+        color: #fff;
+        margin: 0;
+        background: #16a085;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* Navbar */
+      .navbar {
+        background: rgba(22, 160, 133, 0.95);
+        backdrop-filter: blur(10px);
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      .navbar .navbar-brand,
+      .navbar .nav-link {
+        color: #fff !important;
+        font-weight: 500;
+      }
+      .navbar .nav-link:hover {
+        color: #e0f7f1 !important;
+      }
+      /* Particles Canvas */
+            #particles-js {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              left: 0;
+              z-index: 0;
+            }
+
+footer {
+  background-color: #16a085; /* keep your current color */
+  color: #f0f0f0;
+  text-align: center;
+  padding: 25px 0;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2); /* subtle top shadow */
+  position: relative;
+  z-index: 10;
+}

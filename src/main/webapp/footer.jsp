@@ -1,0 +1,1 @@
+<footer style="background:#16a085;color:#f0f0f0;text-align:center;padding:20px 0;font-family:'Poppins',sans-serif;box-shadow:0 -3px 10px rgba(0,0,0,0.25);text-shadow:0 1px 3px rgba(0,0,0,0.2);">© 2025 <strong>Tech Blog</strong> | Crafted with 💻 & ☕ by <a href="#" style="color:#ffd700;text-decoration:none;font-weight:500;transition:all 0.3s;">Taufiq Umar</a></footer>
