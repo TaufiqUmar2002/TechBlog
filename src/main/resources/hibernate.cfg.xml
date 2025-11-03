@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Database Connection -->
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">taufiq</property>
+        <property name="hibernate.connection.password">ayat</property>
+
+        <!-- Connection Pool (HikariCP) -->
+<!--        <property name="hibernate.connection.provider_class">-->
+<!--            org.hibernate.hikaricp.internal.HikariCPConnectionProvider-->
+<!--        </property>-->
+<!--        <property name="hibernate.hikari.maximumPoolSize">10</property>-->
+<!--        <property name="hibernate.hikari.minimumIdle">2</property>-->
+<!--        <property name="hibernate.hikari.idleTimeout">10000</property>-->
+<!--        <property name="hibernate.hikari.connectionTimeout">20000</property>-->
+<!--        <property name="hibernate.hikari.poolName">TechBlogPool</property>-->
+
+        <!-- Session Context -->
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <!-- Logging & Format -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Schema Handling -->
+        <!-- Use validate or none in production to avoid schema delay -->
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+
+        <!-- Caching (optional but speeds up read queries) -->
+<!--        <property name="hibernate.cache.use_second_level_cache">true</property>-->
+<!--        <property name="hibernate.cache.region.factory_class">-->
+<!--            org.hibernate.cache.ehcache.EhCacheRegionFactory-->
+<!--        </property>-->
+
+        <!-- Entity Mapping -->
+        <mapping class="com.tech.entities.User"/>
+    </session-factory>
+</hibernate-configuration>
