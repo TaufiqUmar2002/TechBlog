@@ -25,6 +25,10 @@
       .navbar .nav-link:hover {
         color: #e0f7f1 !important;
       }
+      .navbar .navbar-text {
+          color: #f9f9f9;
+          font-weight: 600;
+      }
       /* Particles Canvas */
             #particles-js {
               position: absolute;

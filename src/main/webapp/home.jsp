@@ -11,6 +11,7 @@
 
 <!-- Bootstrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+   <link rel="stylesheet" href="<c:url value='/css/common.css'/>" />
 
 <!-- Font Awesome -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
@@ -22,27 +23,7 @@
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
-body {
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    color: #fff;
-    background: #16a085;
-}
 
-/* Navbar */
-.navbar {
-    background: rgba(22,160,133,0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 999;
-}
-.navbar .nav-link, .navbar .navbar-brand { color: #fff; font-weight: 500; }
-.navbar .nav-link:hover { color: #e0f7f1; }
 .navbar .navbar-text {
     color: #f9f9f9;
     font-weight: 600;
@@ -119,62 +100,10 @@ body {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
-
-/* Footer */
-footer {
-    background: rgba(22,160,133,0.95);
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: auto;
-}
-footer a {
-    color: #e0f7f1;
-    text-decoration: none;
-    font-weight: 500;
-}
-footer a:hover {
-    text-decoration: underline;
-}
 </style>
 </head>
 <body>
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#"><i class="fa fa-asterisk me-2"></i>Tech Blog</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" href="#"><i class="fa fa-home me-1"></i>Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-code me-1"></i>Learning Code</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-user me-1"></i>Contact</a></li>
-            </ul>
-
-            <!-- Show username if logged in, else show login/signup -->
-            <div class="d-flex">
-                <c:choose>
-                    <c:when test="${not empty sessionScope.username}">
-                        <span class="navbar-text me-3">
-                            <i class="fa fa-user-circle me-1"></i> Welcome, ${sessionScope.username}
-                        </span>
-                        <a href="logoutServlet" class="btn btn-outline-light"><i class="fa fa-sign-out-alt"></i> Logout</a>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="login.jsp" class="btn btn-outline-light me-2"><i class="fa fa-user"></i> Login</a>
-                        <a href="signup.jsp" class="btn btn-light text-success"><i class="fa fa-user-plus"></i> Sign Up</a>
-                    </c:otherwise>
-                </c:choose>
-            </div>
-        </div>
-    </div>
-</nav>
-
+<%@ include file ="navbar.jsp"%>
 <!-- Hero Section -->
 <div class="hero-section">
     <div id="particles-js"></div>
@@ -244,9 +173,10 @@ footer a:hover {
 </div>
 
 <!-- Footer -->
-<footer>
-    © 2025 Tech Blog | Crafted with 💻 and ☕ by <a href="#">Taufiq Umar</a>
-</footer>
+<div>
+ <%@ include file="footer.jsp"%>
+</div>
+
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

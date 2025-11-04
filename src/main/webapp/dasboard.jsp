@@ -13,6 +13,8 @@
 
 <!-- Font Awesome -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+<!-- Particles.js -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <!-- AOS Animation -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
@@ -50,6 +52,15 @@ body {
   color: #e0f7f1;
 }
 
+/* Particles Background */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
 .card {
   border: none;
   border-radius: 20px;
@@ -91,35 +102,7 @@ footer a:hover {
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="home.jsp"><i class="fa fa-asterisk me-2"></i>Tech Blog</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-            aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="home.jsp"><i class="fa fa-home me-1"></i>Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="writePost.jsp"><i class="fa fa-pen me-1"></i>Write Post</a></li>
-        <li class="nav-item"><a class="nav-link" href="profile.jsp"><i class="fa fa-user me-1"></i>Profile</a></li>
-      </ul>
-      <div class="d-flex">
-        <c:choose>
-          <c:when test="${not empty sessionScope.username}">
-            <span class="me-3"><i class="fa fa-user-circle"></i> ${sessionScope.username}</span>
-            <a href="LogoutServlet" class="btn btn-outline-light"><i class="fa fa-sign-out-alt"></i> Logout</a>
-          </c:when>
-          <c:otherwise>
-            <a href="login.jsp" class="btn btn-outline-light me-2"><i class="fa fa-user"></i> Login</a>
-            <a href="signup.jsp" class="btn btn-light text-success"><i class="fa fa-user-plus"></i> Sign Up</a>
-          </c:otherwise>
-        </c:choose>
-      </div>
-    </div>
-  </div>
-</nav>
+<%@ include file="navbar.jsp"%>
 
 <!-- Dashboard Header -->
 <section class="dashboard-header" data-aos="fade-down">
@@ -157,16 +140,31 @@ footer a:hover {
   </div>
 </div>
 
-<!-- Footer -->
-<footer>
-  © 2025 Tech Blog | Crafted with 💻 and ☕ by <a href="#">Taufiq Umar</a>
-</footer>
+<%@ include file="footer.jsp"%>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
 AOS.init({ duration: 1200, once: true });
+</script>
+<script>
+particlesJS('particles-js', {
+  "particles": {
+    "number": { "value": 80 },
+    "color": { "value": "#ffffff" },
+    "shape": { "type": "circle" },
+    "opacity": { "value": 0.5 },
+    "size": { "value": 3 },
+    "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.3, "width": 1 },
+    "move": { "enable": true, "speed": 2 }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": { "onhover": { "enable": true, "mode": "repulse" } }
+  },
+  "retina_detect": true
+});
 </script>
 
 </body>
