@@ -26,6 +26,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
       rel="stylesheet"
     />
+       <link rel="stylesheet" href="<c:url value='/css/common.css'/>" />
+
 <!-- SweetAlert2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 <!-- SweetAlert2 JS -->
@@ -34,34 +36,6 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
     <style>
-      body {
-        font-family: "Poppins", sans-serif;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        margin: 0;
-        color: #fff;
-        background: #16a085;
-      }
-
-      /* Navbar */
-      .navbar {
-        background: rgba(22, 160, 133, 0.95);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        position: sticky;
-        top: 0;
-        z-index: 999;
-      }
-      .navbar .nav-link,
-      .navbar .navbar-brand {
-        color: #fff;
-        font-weight: 500;
-      }
-      .navbar .nav-link:hover {
-        color: #e0f7f1;
-      }
-
       /* Buttons */
       .btn-hero {
         margin: 5px;
@@ -246,68 +220,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     </style>
   </head>
   <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"
-          ><i class="fa fa-asterisk me-2"></i>Tech Blog</a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#"
-                ><i class="fa fa-code me-1"></i>Learning Code</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"
-                ><i class="fa fa-user me-1"></i>Contact</a
-              >
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <i class="fa fa-keyboard me-1"></i>Categories
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#">Programming Language</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Project Implementation</a>
-                </li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="#">Data Structure</a></li>
-              </ul>
-            </li>
-          </ul>
-          <div class="d-flex">
-            <a href="login.jsp" class="btn btn-outline-light me-2"
-              ><i class="fa fa-user"></i> Login</a
-            >
-            <a href="signup.jsp" class="btn btn-light text-success"
-              ><i class="fa fa-user-plus"></i> Sign Up</a
-            >
-          </div>
-        </div>
-      </div>
-    </nav>
+ <%@ include file="navbar.jsp"%>
 
     <!-- Hero Section -->
     <div class="hero-section">
@@ -469,50 +382,11 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-      © 2025 Tech Blog | Crafted with 💻 and ☕ by <a href="#">Taufiq Umar</a>
-    </footer>
-
+    <%@ include file="footer.jsp"%>
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-      AOS.init({ duration: 1200, once: true });
-    </script>
-
-    <!-- Particles.js Config -->
-    <script>
-      particlesJS("particles-js", {
-        particles: {
-          number: { value: 80 },
-          color: { value: "#ffffff" },
-          shape: { type: "circle" },
-          opacity: { value: 0.5 },
-          size: { value: 3 },
-          line_linked: {
-            enable: true,
-            distance: 150,
-            color: "#ffffff",
-            opacity: 0.3,
-            width: 1,
-          },
-          move: { enable: true, speed: 2 },
-        },
-        interactivity: {
-          detect_on: "canvas",
-          events: { onhover: { enable: true, mode: "repulse" } },
-        },
-        retina_detect: true,
-      });
-    </script>
-    <script>
-      $(document).ready(function(){
-           console.log("Hello Data");
-       });
-
-
-    </script>
+    <script  src="<c:url value='/js/common-particle.js'/>" ></script>
 
 
 

@@ -145,27 +145,8 @@ footer a:hover {
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>
-AOS.init({ duration: 1200, once: true });
-</script>
-<script>
-particlesJS('particles-js', {
-  "particles": {
-    "number": { "value": 80 },
-    "color": { "value": "#ffffff" },
-    "shape": { "type": "circle" },
-    "opacity": { "value": 0.5 },
-    "size": { "value": 3 },
-    "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.3, "width": 1 },
-    "move": { "enable": true, "speed": 2 }
-  },
-  "interactivity": {
-    "detect_on": "canvas",
-    "events": { "onhover": { "enable": true, "mode": "repulse" } }
-  },
-  "retina_detect": true
-});
-</script>
+<script  src="<c:url value='/js/common-particle.js'/>" ></script>
+
 
 </body>
 </html>

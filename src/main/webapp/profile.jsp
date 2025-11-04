@@ -105,20 +105,6 @@ p {
   transform: translateY(-2px);
 }
 
-/* Footer */
-footer {
-  background: rgba(22,160,133,0.95);
-  color: #fff;
-  text-align: center;
-  padding: 20px 0;
-  margin-top: auto;
-}
-footer a {
-  color: #e0f7f1;
-  text-decoration: none;
-  font-weight: 500;
-}
-footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -144,11 +130,7 @@ footer a:hover { text-decoration: underline; }
 </div>
 </div>
 
-
-<!-- Footer -->
-<footer>
-  © 2025 Tech Blog | Crafted with 💻 and ☕ by <a href="#">Taufiq Umar</a>
-</footer>
+<%@ include file="footer.jsp"%>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

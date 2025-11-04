@@ -138,34 +138,7 @@ footer a:hover { text-decoration: underline; }
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="home.jsp"><i class="fa fa-asterisk me-2"></i>Tech Blog</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link" href="home.jsp"><i class="fa fa-home me-1"></i>Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="dashboard.jsp"><i class="fa fa-chart-line me-1"></i>Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link active" href="profile.jsp"><i class="fa fa-user me-1"></i>Profile</a></li>
-      </ul>
-      <div class="d-flex">
-        <c:choose>
-          <c:when test="${not empty sessionScope.username}">
-            <span class="me-3"><i class="fa fa-user-circle"></i> ${sessionScope.username}</span>
-            <a href="logoutServlet" class="btn btn-outline-light"><i class="fa fa-sign-out-alt"></i> Logout</a>
-          </c:when>
-          <c:otherwise>
-            <a href="login.jsp" class="btn btn-outline-light me-2"><i class="fa fa-user"></i> Login</a>
-            <a href="signup.jsp" class="btn btn-light text-success"><i class="fa fa-user-plus"></i> Sign Up</a>
-          </c:otherwise>
-        </c:choose>
-      </div>
-    </div>
-  </div>
-</nav>
+<%@ include file="navbar.jsp"%>
 
 <!-- Edit Profile Section -->
 <div class="edit-container">
@@ -199,8 +172,6 @@ footer a:hover { text-decoration: underline; }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-AOS.init({ duration: 1200, once: true });
-
 // Preview uploaded image instantly
 function previewImage(event) {
   const reader = new FileReader();
@@ -209,23 +180,9 @@ function previewImage(event) {
   };
   reader.readAsDataURL(event.target.files[0]);
 }
-
-// Particles background
-particlesJS('particles-js', {
-  "particles": {
-    "number": { "value": 70 },
-    "color": { "value": "#ffffff" },
-    "opacity": { "value": 0.5 },
-    "size": { "value": 3 },
-    "line_linked": { "enable": true, "color": "#ffffff", "opacity": 0.3 },
-    "move": { "enable": true, "speed": 2 }
-  },
-  "interactivity": {
-    "events": { "onhover": { "enable": true, "mode": "repulse" } }
-  },
-  "retina_detect": true
-});
 </script>
+<script  src="<c:url value='/js/common-particle.js'/>" ></script>
+
 
 </body>
 </html>

@@ -12,6 +12,7 @@
 <!-- Bootstrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
    <link rel="stylesheet" href="<c:url value='/css/common.css'/>" />
+   <link rel="stylesheet" href="<c:url value='/css/home.css'/>" />
 
 <!-- Font Awesome -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
@@ -22,85 +23,6 @@
 <!-- Particles.js -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-<style>
-
-.navbar .navbar-text {
-    color: #f9f9f9;
-    font-weight: 600;
-}
-
-/* Hero Section */
-.hero-section {
-    position: relative;
-    flex: 1;
-    min-height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
-}
-.hero-section h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-}
-.hero-section p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    z-index: 1;
-    position: relative;
-}
-
-/* Particles Background */
-#particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 0;
-}
-
-/* Feature Section */
-.features-section {
-    background-color: rgba(255,255,255,0.05);
-    padding: 60px 20px;
-    text-align: center;
-}
-.features-section h2 {
-    font-weight: 700;
-    margin-bottom: 40px;
-}
-.feature-box {
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    background: rgba(255,255,255,0.1);
-    padding: 30px;
-    transition: transform 0.4s, box-shadow 0.4s;
-}
-.feature-box:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 25px rgba(0,0,0,0.2);
-}
-.feature-box i {
-    font-size: 3rem;
-    margin-bottom: 15px;
-}
-
-/* Buttons */
-.btn-hero {
-    margin: 5px;
-    border-radius: 50px;
-    padding: 10px 25px;
-    font-weight: 500;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.btn-hero:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-}
-</style>
 </head>
 <body>
 <%@ include file ="navbar.jsp"%>
@@ -176,33 +98,11 @@
 <div>
  <%@ include file="footer.jsp"%>
 </div>
-
-
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>
-AOS.init({ duration: 1200, once: true });
-</script>
+<script  src="<c:url value='/js/common-particle.js'/>" ></script>
 
-<!-- Particles.js Config -->
-<script>
-particlesJS('particles-js', {
-  "particles": {
-    "number": { "value": 80 },
-    "color": { "value": "#ffffff" },
-    "shape": { "type": "circle" },
-    "opacity": { "value": 0.5 },
-    "size": { "value": 3 },
-    "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.3, "width": 1 },
-    "move": { "enable": true, "speed": 2 }
-  },
-  "interactivity": {
-    "detect_on": "canvas",
-    "events": { "onhover": { "enable": true, "mode": "repulse" } }
-  },
-  "retina_detect": true
-});
-</script>
+
 </body>
 </html>
