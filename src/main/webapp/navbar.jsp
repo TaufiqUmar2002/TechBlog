@@ -11,7 +11,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link active" href="#"><i class="fa fa-home me-1"></i>Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-code me-1"></i>Learning Code</a></li>
-                <li class="nav-item"><a class="nav-link" href="writePost.jsp"><i class="fa fa-pen me-1"></i>Write Post</a></li>
+                <li class="nav-item"><a class="nav-link" href="add-post.jsp"><i class="fa fa-pen me-1"></i>Write Post</a></li>
             </ul>
             <!-- Show username if logged in, else show login/signup -->
             <div class="d-flex">

@@ -1,8 +1,6 @@
 package com.tech.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Random;
 
@@ -10,6 +8,8 @@ import java.util.Random;
 @Table(name = "user_blog")
 public class User {
     @Id
+    @SequenceGenerator(name = "user_seq",sequenceName = "user_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "user_seq")
     private Integer id;
     private String name;
     private String email;
@@ -27,7 +27,7 @@ public class User {
     }
 
     public User(String name, String email, String password, String gender, Long phoneNumber, String about) {
-        this.id = new Random().nextInt(1000);
+//        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;

@@ -1,7 +1,6 @@
 package com.tech.helper;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
@@ -19,7 +18,7 @@ public class FileHelper {
         return f;
     }
     public static  boolean saveFile(InputStream ins , String path){
-        Boolean e = false;
+        boolean e = false;
         try{
           byte[] b =  new byte[ins.available()];
             FileOutputStream fos = new FileOutputStream(path);

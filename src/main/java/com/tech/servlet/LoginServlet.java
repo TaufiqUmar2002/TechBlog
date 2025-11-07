@@ -1,6 +1,6 @@
 package com.tech.servlet;
 
-import com.tech.dao.UserDao;
+import com.tech.dao.CommonDao;
 import com.tech.entities.User;
 import com.tech.helper.Message;
 
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class LoginServlet extends HttpServlet {
-    UserDao userDao = new UserDao();
+    CommonDao userDao = new CommonDao();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
@@ -30,6 +30,7 @@ public class LoginServlet extends HttpServlet {
                 Message message = new Message("Incorrect Password","error","");
                 HttpSession session = req.getSession();
                 session.setAttribute("msg",message);
+
                 resp.sendRedirect("login.jsp");
 
             }

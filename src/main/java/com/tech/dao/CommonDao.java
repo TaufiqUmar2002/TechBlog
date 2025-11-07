@@ -1,14 +1,16 @@
 package com.tech.dao;
 
+import com.tech.entities.Category;
 import com.tech.entities.User;
 import com.tech.helper.FactoryProvider;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.SelectionQuery;
 
+import java.util.List;
 import java.util.Optional;
 
-public class UserDao implements IUserDao{
+public class CommonDao implements ICommonDao {
 
     @Override
     public void saveUser(User user) {
@@ -26,6 +28,13 @@ public class UserDao implements IUserDao{
         query.setParameter("uName",name);
         query.setParameter("uEmail",email);
         return query.uniqueResultOptional();
+    }
+
+    @Override
+    public List<Category> getAllCategories() {
+        Session session = FactoryProvider.getFactory().openSession();
+        SelectionQuery<Category> query = session.createSelectionQuery("from Category",Category.class);
+        return query.getResultList();
     }
 
 

@@ -31,7 +31,7 @@
 
         <!-- Schema Handling -->
         <!-- Use validate or none in production to avoid schema delay -->
-        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- Caching (optional but speeds up read queries) -->
 <!--        <property name="hibernate.cache.use_second_level_cache">true</property>-->
@@ -41,5 +41,7 @@
 
         <!-- Entity Mapping -->
         <mapping class="com.tech.entities.User"/>
+        <mapping class="com.tech.entities.Category"/>
+        <mapping class="com.tech.entities.Post"/>
     </session-factory>
 </hibernate-configuration>

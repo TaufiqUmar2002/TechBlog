@@ -1,7 +1,7 @@
 package com.tech.servlet;
 
-import com.tech.dao.IUserDao;
-import com.tech.dao.UserDao;
+import com.tech.dao.ICommonDao;
+import com.tech.dao.CommonDao;
 import com.tech.entities.User;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -18,7 +17,7 @@ import java.util.Optional;
 @MultipartConfig
 public class SignUpServlet extends HttpServlet {
 
-    private final IUserDao userDao=new UserDao();
+    private final ICommonDao userDao=new CommonDao();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");

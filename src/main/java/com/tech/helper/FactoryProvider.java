@@ -10,7 +10,7 @@ public class FactoryProvider {
     public static SessionFactory getFactory() {
         if (factory == null) {
             try {
-                factory = new Configuration().configure().buildSessionFactory();
+                factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
                 System.out.println("Hibernate SessionFactory initialized once.");
             } catch (Throwable ex) {
                 System.err.println("SessionFactory creation failed: " + ex);
