@@ -7,8 +7,8 @@ import oracle.sql.TIMESTAMP;
 @Table(name = "post_fis")
 public class Post {
     @Id
-    @SequenceGenerator(name = "post_seq",sequenceName = "pos_seq",allocationSize = 20)
-    @GeneratedValue(strategy = GenerationType.IDENTITY,generator = "post_seq")
+    @SequenceGenerator(name = "post_seq",sequenceName = "pos_seq",allocationSize = 20,initialValue = 5000)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "post_seq")
     private Integer id;
     private String title;
     private String content;
@@ -57,5 +57,21 @@ public class Post {
 
     public void setPic(String pic) {
         this.pic = pic;
+    }
+
+    public TIMESTAMP getCreationTimeStamp() {
+        return creationTimeStamp;
+    }
+
+    public void setCreationTimeStamp(TIMESTAMP creationTimeStamp) {
+        this.creationTimeStamp = creationTimeStamp;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

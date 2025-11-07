@@ -1,6 +1,7 @@
 package com.tech.dao;
 
 import com.tech.entities.Category;
+import com.tech.entities.Post;
 import com.tech.entities.User;
 
 import java.util.List;
@@ -13,5 +14,10 @@ public interface ICommonDao {
     Optional<User> getUserByName(String name, String email);
 
     List<Category> getAllCategories();
+    Category getCategoryById(Integer id);
+
+    void savePost(Post post);
+
+    List<Post> getAllPostByCategory(Integer id);
 
 }

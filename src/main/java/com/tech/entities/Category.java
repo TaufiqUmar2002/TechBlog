@@ -2,16 +2,18 @@ package com.tech.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "category_fis")
-public class Category {
+public class Category implements Serializable {
     @Id
-    @SequenceGenerator(name = "category_seq",sequenceName = "category_seq",allocationSize = 20)
+    @SequenceGenerator(name = "category_seq",sequenceName = "category_seq",allocationSize = 20,initialValue = 5000)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "category_seq")
     private Integer id;
     private String name;
     private String description;
-    @OneToOne(mappedBy = "category",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
     private Post post;
 
     public Integer getId() {

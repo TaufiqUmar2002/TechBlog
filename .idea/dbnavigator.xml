@@ -18,8 +18,8 @@ ALTER TABLE USER_BLOG ADD (profilePicPath varchar2(200));
 
 SELECT * FROM CATEGORY_FIS;
 SELECT * FROM POST_FIS;
-
-INSERT INTO CATEGORY_FIS values (22,'PYTHON','learn python programming');]]></console>
+truncate table POST_FIS;
+commit;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

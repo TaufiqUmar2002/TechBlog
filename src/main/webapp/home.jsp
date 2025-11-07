@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
+<%@ page import="com.tech.entities.Category"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,6 +49,65 @@
         </c:choose>
     </div>
 </div>
+
+<!-- Posts Section -->
+<div class="posts-section py-5">
+    <div class="container">
+
+        <h2 class="text-center mb-4" data-aos="zoom-in">Latest Posts by Category</h2>
+
+        <c:forEach var="cat" items="${categories}">
+            <div class="mt-5" data-aos="fade-up">
+
+                <!-- Category Name -->
+                <h3 class="text-primary border-bottom pb-2">
+                    <i class="fa fa-folder-open me-2"></i>
+                    ${cat.name}
+                </h3>
+
+                <!-- Posts under category -->
+                <c:choose>
+
+                    <c:when test="${not empty cat.posts}">
+                        <div class="row g-4">
+
+                            <c:forEach var="post" items="${cat.posts}">
+                                <div class="col-md-4">
+                                    <div class="card h-100 shadow-sm">
+                                        <c:if test="${not empty post.imageName}">
+                                            <img src="<c:url value='/post_pics/${post.imageName}'/>" class="card-img-top" alt="Post image"/>
+                                        </c:if>
+
+                                        <div class="card-body">
+                                            <h5 class="card-title">${post.title}</h5>
+
+                                            <p class="card-text">
+                                                ${post.content.substring(0, Math.min(post.content.length(), 100))}...
+                                            </p>
+
+                                            <a href="view-post.jsp?pid=${post.id}" class="btn btn-sm btn-primary">
+                                                Read More
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+
+                        </div>
+                    </c:when>
+
+                    <c:otherwise>
+                        <p class="text-muted">No posts available in this category.</p>
+                    </c:otherwise>
+
+                </c:choose>
+
+            </div>
+        </c:forEach>
+
+    </div>
+</div>
+
 
 <!-- Features Section -->
 <div class="features-section">

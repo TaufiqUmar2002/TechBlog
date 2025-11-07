@@ -1,6 +1,7 @@
 package com.tech.dao;
 
 import com.tech.entities.Category;
+import com.tech.entities.Post;
 import com.tech.entities.User;
 import com.tech.helper.FactoryProvider;
 import org.hibernate.Session;
@@ -34,6 +35,28 @@ public class CommonDao implements ICommonDao {
     public List<Category> getAllCategories() {
         Session session = FactoryProvider.getFactory().openSession();
         SelectionQuery<Category> query = session.createSelectionQuery("from Category",Category.class);
+        return query.getResultList();
+    }
+    @Override
+    public Category getCategoryById(Integer id){
+        Session session = FactoryProvider.getFactory().openSession();
+        return session.find(Category.class,id);
+    }
+
+    @Override
+    public void savePost(Post post) {
+        Session session = FactoryProvider.getFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.persist(post);
+        transaction.commit();
+        session.close();
+    }
+
+    @Override
+    public List<Post> getAllPostByCategory(Integer id) {
+        Session session = FactoryProvider.getFactory().openSession();
+        SelectionQuery<Post> query =session.createSelectionQuery("from Post where category =: categoryId",Post.class);
+        query.setParameter("categoryId",id);
         return query.getResultList();
     }
 
