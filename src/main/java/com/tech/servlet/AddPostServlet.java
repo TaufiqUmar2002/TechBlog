@@ -5,10 +5,8 @@ import com.tech.dao.ICommonDao;
 import com.tech.entities.Category;
 import com.tech.entities.Post;
 import com.tech.helper.FileHelper;
-import oracle.sql.TIMESTAMP;
-
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,11 +28,13 @@ public class AddPostServlet extends HttpServlet {
         Integer id =  Integer.parseInt(req.getParameter("categoryId"));
         String content = req.getParameter("content");
         Optional<Part> part = Optional.ofNullable(req.getPart("image"));
+        ServletContext context = req.getServletContext();
+        String param1 = context.getInitParameter("param1");
+        String param2 = context.getInitParameter("param2");
         Post post = new Post();
         if(part.isPresent()){
             String fileName=part.get().getSubmittedFileName();
-            String param1 = req.getServletContext().getInitParameter("param1");
-            String path = req.getRealPath("/") + param1 + File.separator + fileName;
+            String path = param2 + param1 + File.separator + fileName;
             FileHelper.saveFile(part.get().getInputStream(),path);
             post.setPic(fileName);
         }

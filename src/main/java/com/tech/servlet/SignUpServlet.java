@@ -3,12 +3,18 @@ package com.tech.servlet;
 import com.tech.dao.ICommonDao;
 import com.tech.dao.CommonDao;
 import com.tech.entities.User;
+import com.tech.helper.FileHelper;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -29,13 +35,19 @@ public class SignUpServlet extends HttpServlet {
         String gender = req.getParameter("gender");
         Long phone = Long.parseLong(req.getParameter("phone"));
         String about = req.getParameter("about");
+        Part part = req.getPart("image");
+        ServletContext context = req.getServletContext();
+        String param2 = context.getInitParameter("param2");
+        String param3 = context.getInitParameter("param3");
         Optional<User> user1 =userDao.getUserByName(fullName,email);
         if(password.equals(confirmPass)){
             if(user1.isPresent()){
                 data.put("status","error");
                 data.put("message","User is already present");
             }else {
-                User user = new User(fullName,email,password,gender,phone,about);
+                String path = param2+param3+ File.separator+part.getSubmittedFileName();
+                User user = new User(fullName,email,password,gender,phone,about,part.getSubmittedFileName(), LocalDate.now());
+                FileHelper.saveFile(part.getInputStream(),path);
                 userDao.saveUser(user);
                 resp.sendRedirect("login.jsp");
             }

@@ -17,7 +17,7 @@ public class CommonDao implements ICommonDao {
     public void saveUser(User user) {
         Session session= FactoryProvider.getFactory().openSession();
         Transaction txn = session.beginTransaction();
-        session.persist(user);
+        session.merge(user);
         txn.commit();
         session.close();
     }

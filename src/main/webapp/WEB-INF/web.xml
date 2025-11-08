@@ -65,4 +65,12 @@
     <param-name>param1</param-name>
     <param-value>img</param-value>
   </context-param>
+  <context-param>
+    <param-name>param2</param-name>
+    <param-value>C:\Users\aarav\OneDrive\Desktop\Backend\Hibernate\TechBlog\src\main\webapp\</param-value>
+  </context-param>
+  <context-param>
+    <param-name>param3</param-name>
+    <param-value>pics</param-value>
+  </context-param>
 </web-app>

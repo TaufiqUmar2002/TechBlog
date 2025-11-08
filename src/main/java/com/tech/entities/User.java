@@ -2,6 +2,7 @@ package com.tech.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Random;
 
 @Entity
@@ -18,6 +19,7 @@ public class User {
     private Long phoneNumber;
     private String about;
     private String profilePicPath;
+    private LocalDate joinDate;
 
     public Integer getId() {
         return id;
@@ -26,14 +28,23 @@ public class User {
     public  User(){
     }
 
-    public User(String name, String email, String password, String gender, Long phoneNumber, String about) {
-//        this.id = id;
+    public User(String name, String email, String password, String gender, Long phoneNumber, String about,String profilePicPath,LocalDate joinDate) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.about = about;
+        this.profilePicPath =profilePicPath;
+        this.joinDate = joinDate;
+    }
+
+    public LocalDate getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(LocalDate joinDate) {
+        this.joinDate = joinDate;
     }
 
     public void setId(Integer id) {

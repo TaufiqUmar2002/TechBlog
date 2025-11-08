@@ -146,13 +146,13 @@ footer a:hover { text-decoration: underline; }
 
   <div class="edit-card" data-aos="zoom-in">
     <form action="updateProfileServlet" method="post" enctype="multipart/form-data">
-      <img id="preview" src="${pageContext.request.contextPath}/pics/${sessionScope.path}" alt="Profile Picture" class="profile-pic">
+      <img id="preview" src="${pageContext.request.contextPath}/pics/${sessionScope.user.profilePicPath}" alt="Profile Picture" class="profile-pic">
       <label for="profilePic" class="custom-file-label"><i class="fa fa-camera"></i> Change Photo</label>
       <input type="file" id="profilePic" name="profilePic" accept="image/*" onchange="previewImage(event)">
 
-      <input type="text" class="form-control" name="name" placeholder="Full Name" value="${sessionScope.username}" required>
-      <input type="email" class="form-control" name="email" placeholder="Email" value="${sessionScope.email}" required>
-      <textarea class="form-control" name="bio" rows="3" placeholder="Write something about yourself...">${sessionScope.bio}</textarea>
+      <input type="text" class="form-control" name="name" placeholder="Full Name" value="${sessionScope.user.name}" required>
+      <input type="email" class="form-control" name="email" placeholder="Email" value="${sessionScope.user.email}" required>
+      <textarea class="form-control" name="bio" rows="3" placeholder="Write something about yourself...">${sessionScope.user.about}</textarea>
 
       <div class="d-flex justify-content-between mt-3">
         <button type="submit" class="btn btn-save"><i class="fa fa-save me-2"></i>Save Changes</button>

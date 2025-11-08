@@ -233,7 +233,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
     <!-- Sign Up Form -->
     <div class="signup-container" data-aos="fade-up">
-      <form action="signUpServlet" id="reg-form" method="post">
+      <form action="signUpServlet" id="reg-form" method="post" enctype="multipart/form-data" >
         <div class="row g-3 mb-3">
           <div class="col-md-6 input-icon">
             <i class="fa fa-user"></i>

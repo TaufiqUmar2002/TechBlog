@@ -19,7 +19,6 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         Optional<User> user =commonDao.getUserByName(name,email);
-
         if(user.isPresent()){
             if(user.get().getPassword().equals(password.trim())){
                 req.getSession().setAttribute("user",user.get());
