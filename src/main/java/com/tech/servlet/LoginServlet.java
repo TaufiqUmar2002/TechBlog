@@ -13,13 +13,13 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class LoginServlet extends HttpServlet {
-    CommonDao userDao = new CommonDao();
+    CommonDao commonDao = new CommonDao();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        Optional<User> user =userDao.getUserByName(name,email);
+        Optional<User> user =commonDao.getUserByName(name,email);
         if(user.isPresent()){
             if(user.get().getPassword().equals(password.trim())){
                 req.getSession().setAttribute("username",name);
@@ -38,5 +38,6 @@ public class LoginServlet extends HttpServlet {
         else{
             resp.sendRedirect("login.jsp");
         }
+
     }
 }

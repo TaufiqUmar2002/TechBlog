@@ -1,7 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page isELIgnored="false" %>
+<%@ page import="com.tech.dao.CommonDao" %>
+<%@ page import="java.util.List"%>
 <%@ page import="com.tech.entities.Category"%>
+<%@ page import="com.tech.entities.Post"%>
+<%@ page isELIgnored="false" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +18,81 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
    <link rel="stylesheet" href="<c:url value='/css/common.css'/>" />
    <link rel="stylesheet" href="<c:url value='/css/home.css'/>" />
+<style>
+  /* ✅ Post container */
+  #postsContainer {
+      background: #0fa57a; /* your green base */
+      padding: 20px;
+      border-radius: 10px;
+  }
 
+  .post-card-modern {
+      background: #fff;
+      border-radius: 18px;
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+  }
+
+  .thumb-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 10px;
+      object-fit: cover;
+  }
+
+  .post-content {
+      flex: 1;
+  }
+
+  .post-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #046E61;
+  }
+
+  .post-summary {
+      color: #333;
+      font-size: 15px;
+      margin-bottom: 18px;
+  }
+
+  .post-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+  }
+.btn-modern {
+    background: white;
+    border: 2px solid #0ea06c;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-weight: 600;
+    color: #0ea06c;
+    transition: 0.25s;
+}
+
+.btn-modern:hover {
+    background: #0ea06c;
+    color: white;
+}
+
+.btn-view {
+    border-color: #198754;
+    color: #198754;
+}
+
+.btn-view:hover {
+    background: #198754;
+    color: white;
+}
+
+
+
+    </style>
 <!-- Font Awesome -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
@@ -24,6 +102,12 @@
 <!-- Particles.js -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
+<%
+ CommonDao commonDao = new CommonDao();
+ session.setAttribute("categories",commonDao.getAllCategories());
+
+List<Category>  categories = (List<Category>) session.getAttribute("categories");
+%>
 </head>
 <body>
 <%@ include file ="navbar.jsp"%>
@@ -49,64 +133,45 @@
         </c:choose>
     </div>
 </div>
+<div class="container py-4">
 
-<!-- Posts Section -->
-<div class="posts-section py-5">
-    <div class="container">
+    <div class="row">
 
-        <h2 class="text-center mb-4" data-aos="zoom-in">Latest Posts by Category</h2>
+        <!-- ✅ LEFT CATEGORIES -->
+        <div class="col-md-3">
+            <div class="list-group" id="categoryList">
 
-        <c:forEach var="cat" items="${categories}">
-            <div class="mt-5" data-aos="fade-up">
+                <a data-id="0" class="list-group-item list-group-item-action">
+                    All Posts
+                </a>
+                <a data-id="-1" class="list-group-item list-group-item-action">
+                    Public Posts
+                </a>
+                <a data-id="-2" class="list-group-item list-group-item-action">
+                    My Posts
+                </a>
 
-                <!-- Category Name -->
-                <h3 class="text-primary border-bottom pb-2">
-                    <i class="fa fa-folder-open me-2"></i>
-                    ${cat.name}
-                </h3>
-
-                <!-- Posts under category -->
-                <c:choose>
-
-                    <c:when test="${not empty cat.posts}">
-                        <div class="row g-4">
-
-                            <c:forEach var="post" items="${cat.posts}">
-                                <div class="col-md-4">
-                                    <div class="card h-100 shadow-sm">
-                                        <c:if test="${not empty post.imageName}">
-                                            <img src="<c:url value='/post_pics/${post.imageName}'/>" class="card-img-top" alt="Post image"/>
-                                        </c:if>
-
-                                        <div class="card-body">
-                                            <h5 class="card-title">${post.title}</h5>
-
-                                            <p class="card-text">
-                                                ${post.content.substring(0, Math.min(post.content.length(), 100))}...
-                                            </p>
-
-                                            <a href="view-post.jsp?pid=${post.id}" class="btn btn-sm btn-primary">
-                                                Read More
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
-
-                        </div>
-                    </c:when>
-
-                    <c:otherwise>
-                        <p class="text-muted">No posts available in this category.</p>
-                    </c:otherwise>
-
-                </c:choose>
+                <c:forEach var="cat" items="${categories}">
+                    <a data-id="${cat.id}" class="list-group-item list-group-item-action">
+                        ${cat.name}
+                    </a>
+                </c:forEach>
 
             </div>
-        </c:forEach>
+        </div>
+
+        <!-- ✅ RIGHT POSTS PANEL -->
+        <div class="col-md-9">
+            <div id="postsContainer">
+                Select a category
+            </div>
+        </div>
 
     </div>
+
 </div>
+
+
 
 
 <!-- Features Section -->
@@ -162,6 +227,88 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script  src="<c:url value='/js/common-particle.js'/>" ></script>
+<script>
+   const ctx = "${pageContext.request.contextPath}";
+   console.log(ctx)
+</script>
+
+<script>
+    function loadPosts(cid) {
+
+        document.querySelectorAll("#categoryList .list-group-item")
+            .forEach(i => i.classList.remove("active"));
+
+        let x = document.querySelector(`#categoryList .list-group-item[data-id="${cid}"]`);
+        if (x) x.classList.add("active");
+
+        document.getElementById("postsContainer").innerHTML = "Loading...";
+
+        fetch(ctx + "/getPosts?cid=" + cid)
+            .then(res => res.json())
+            .then(list => {
+
+                if (!list || list.length === 0) {
+                    document.getElementById("postsContainer").innerHTML = "";
+                    return;
+                }
+
+                let html = "";
+
+                list.forEach(post => {
+                    let summary = (post.summary ?? "").substring(0, 180);
+                    let imgSrc = post.imageName
+                        ? `${pageContext.request.contextPath}/img/\${post.imageName}`
+
+                        : "https://via.placeholder.com/120?text=No+Image";
+                    html += `
+                    <div class="post-card-modern">
+                        <img src="\${imgSrc}" class="thumb-img" alt="Post Image">
+
+                        <div class="post-content">
+                            <h3 class="post-title">\${post.title}</h3>
+
+                            <p class="post-summary">\${summary}...</p>
+
+                            <div class="post-actions">
+                                <button class="btn-modern btn-like">
+                                    <i class="fa fa-thumbs-up"></i> Like
+                                </button>
+
+                                <button class="btn-modern btn-dislike">
+                                    <i class="fa fa-thumbs-down"></i> Dislike
+                                </button>
+
+                                <button class="btn-modern btn-comment">
+                                    <i class="fa fa-comment"></i> Comment
+                                </button>
+
+                                <a href="${pageContext.request.contextPath}/view-post.jsp?pid=${post.id}"
+                                   class="btn-modern btn-view">
+                                    <i class="fa fa-eye"></i> View Full
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                });
+
+
+                document.getElementById("postsContainer").innerHTML = html;
+            })
+            .catch(err => console.log(err));
+    }
+
+    // Attach click
+    document.querySelectorAll("#categoryList .list-group-item")
+        .forEach(item => {
+            item.addEventListener("click", () => loadPosts(item.getAttribute("data-id")));
+        });
+
+</script>
+
+
+
+
 
 
 </body>

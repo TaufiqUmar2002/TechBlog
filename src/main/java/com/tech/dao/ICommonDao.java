@@ -19,5 +19,7 @@ public interface ICommonDao {
     void savePost(Post post);
 
     List<Post> getAllPostByCategory(Integer id);
+    Post getPostById(Integer Id);
 
 }
+//<c:url value='/img/1.webp'/>

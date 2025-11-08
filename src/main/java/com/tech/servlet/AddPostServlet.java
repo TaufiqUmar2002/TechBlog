@@ -4,8 +4,10 @@ import com.tech.dao.CommonDao;
 import com.tech.dao.ICommonDao;
 import com.tech.entities.Category;
 import com.tech.entities.Post;
+import com.tech.helper.FileHelper;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +30,11 @@ public class AddPostServlet extends HttpServlet {
         Post post = new Post();
         if(part.isPresent()){
             String fileName=part.get().getSubmittedFileName();
-            String filePath =req.getRealPath("/")+"files"+ File.separator+fileName;
-            post.setPic(filePath);
+            System.out.println(fileName);
+            String path =req.getRealPath("/")+"img"+ File.separator+fileName;
+            System.out.println(path);
+            FileHelper.saveFile(part.get().getInputStream(),path);
+            post.setPic(fileName);
         }
 
         post.setTitle(title);

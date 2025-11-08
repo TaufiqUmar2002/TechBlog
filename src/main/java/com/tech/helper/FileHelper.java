@@ -17,18 +17,23 @@ public class FileHelper {
         }
         return f;
     }
-    public static  boolean saveFile(InputStream ins , String path){
-        boolean e = false;
-        try{
-          byte[] b =  new byte[ins.available()];
-            FileOutputStream fos = new FileOutputStream(path);
-            fos.write(b);
+    public static boolean saveFile(InputStream ins, String path) {
+        try (FileOutputStream fos = new FileOutputStream(path)) {
+
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+
+            while ((bytesRead = ins.read(buffer)) != -1) {
+                fos.write(buffer, 0, bytesRead);
+            }
+
             fos.flush();
-            fos.close();
-            e=true;
-        }catch (Exception f){
-            f.getStackTrace();
+            return true;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
         }
-        return e;
     }
+
 }

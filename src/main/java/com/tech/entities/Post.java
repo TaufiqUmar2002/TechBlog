@@ -11,14 +11,14 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "post_seq")
     private Integer id;
     private String title;
+    @Lob
     private String content;
     private String code;
     private String pic;
     private TIMESTAMP creationTimeStamp;
-    @OneToOne
-    @JoinColumn(name = "category_id",referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
-
     public Integer getId() {
         return id;
     }

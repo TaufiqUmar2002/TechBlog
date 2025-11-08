@@ -19,7 +19,11 @@ ALTER TABLE USER_BLOG ADD (profilePicPath varchar2(200));
 SELECT * FROM CATEGORY_FIS;
 SELECT * FROM POST_FIS;
 truncate table POST_FIS;
-commit;]]></console>
+commit;
+
+update POST_FIS set pic ='1.webp';
+
+select * from ALL_CONSTRAINTS where CONSTRAINT_NAME ='UK_P4PH6GRFTB6399MJAF57T4D1H';]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

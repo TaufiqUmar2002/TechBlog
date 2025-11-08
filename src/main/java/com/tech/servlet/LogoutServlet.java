@@ -17,5 +17,6 @@ public class LogoutServlet extends HttpServlet {
         resp.sendRedirect("login.jsp");
 //        List<Category> categories = (List<Category>) req.getSession().getAttribute("categories");
 
+
     }
 }

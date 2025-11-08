@@ -55,9 +55,15 @@ public class CommonDao implements ICommonDao {
     @Override
     public List<Post> getAllPostByCategory(Integer id) {
         Session session = FactoryProvider.getFactory().openSession();
-        SelectionQuery<Post> query =session.createSelectionQuery("from Post where category =: categoryId",Post.class);
+        SelectionQuery<Post> query =session.createSelectionQuery("from Post p where p.category.id =: categoryId",Post.class);
         query.setParameter("categoryId",id);
         return query.getResultList();
+    }
+
+    @Override
+    public Post getPostById(Integer id) {
+        Session session = FactoryProvider.getFactory().openSession();
+        return session.find(Post.class,id);
     }
 
 
