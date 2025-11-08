@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.tech.helper.Message" %>
 <%@ page isELIgnored="false" %>
+<%@ page import ="com.tech.entities.User"%>
 
 <!DOCTYPE html>
 <html lang="en">

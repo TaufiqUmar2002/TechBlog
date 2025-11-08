@@ -121,7 +121,7 @@ List<Category>  categories = (List<Category>) session.getAttribute("categories")
         </p>
 
         <c:choose>
-            <c:when test="${not empty sessionScope.username}">
+            <c:when test="${not empty sessionScope.user}">
                 <a href="dasboard.jsp" class="btn btn-light text-success btn-lg btn-hero">
                     <i class="fa fa-arrow-right me-2"></i>Go to Dashboard
                 </a>

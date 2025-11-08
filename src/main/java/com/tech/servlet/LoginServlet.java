@@ -3,7 +3,6 @@ package com.tech.servlet;
 import com.tech.dao.CommonDao;
 import com.tech.entities.User;
 import com.tech.helper.Message;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,9 +22,7 @@ public class LoginServlet extends HttpServlet {
 
         if(user.isPresent()){
             if(user.get().getPassword().equals(password.trim())){
-                req.getSession().setAttribute("username",name);
-                req.getSession().setAttribute("email",email);
-                req.getSession().setAttribute("path",user.get().getProfilePicPath());
+                req.getSession().setAttribute("user",user.get());
                 resp.sendRedirect("home.jsp");
             }
             else{
@@ -33,7 +30,6 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("msg",message);
                 resp.sendRedirect("login.jsp");
-
             }
         }
         else{

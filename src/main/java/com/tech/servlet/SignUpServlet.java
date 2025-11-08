@@ -37,9 +37,7 @@ public class SignUpServlet extends HttpServlet {
             }else {
                 User user = new User(fullName,email,password,gender,phone,about);
                 userDao.saveUser(user);
-                req.getSession().setAttribute("username",fullName);
-                req.getSession().setAttribute("email",email);
-                resp.sendRedirect("home.jsp");
+                resp.sendRedirect("login.jsp");
             }
         }
         else{

@@ -121,10 +121,10 @@ p {
 
   <!-- Profile Card -->
   <div class="profile-card" data-aos="zoom-in" style="z-index: 1;">
-    <img src="${pageContext.request.contextPath}/pics/${sessionScope.path}" alt="Profile Picture" class="profile-pic">
+    <img src="${pageContext.request.contextPath}/pics/${sessionScope.user.profilePicPath}" alt="Profile Picture" class="profile-pic">
     <h3>${sessionScope.username}</h3>
-    <p><i class="fa fa-envelope me-2"></i>${sessionScope.email}</p>
-    <p><i class="fa fa-calendar me-2"></i>Member since: <span>${sessionScope.path}</span></p>
+    <p><i class="fa fa-envelope me-2"></i>${sessionScope.user.name}</p>
+    <p><i class="fa fa-calendar me-2"></i>Member since: <span>${sessionScope.user.profilePicPath}</span></p>
     <hr style="border-color: rgba(255,255,255,0.3);">
     <p>"Coding is not just typing — it's creating logic from imagination."</p>
        <a href="home.jsp" class="btn btn-edit mt-3"><i class="fa fa-pen me-2"></i>Close</a>

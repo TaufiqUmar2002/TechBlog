@@ -6,14 +6,12 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up | Tech Blog</title>
-
     <!-- Bootstrap 5 CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-
     <!-- Font Awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -313,6 +311,9 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
             rows="3"
           ></textarea>
         </div>
+         <div class="mb-3 input-icon">
+                  <input type="file" name="image" class="form-control" accept="image/*" />
+                </div>
 
         <button type="submit" class="btn btn-primary w-100 btn-lg mb-3">
           <i class="fa fa-user-plus me-2"></i> Sign Up
@@ -381,14 +382,10 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         </div>
       </div>
     </div>
-
     <%@ include file="footer.jsp"%>
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script  src="<c:url value='/js/common-particle.js'/>" ></script>
-
-
-
   </body>
 </html>
