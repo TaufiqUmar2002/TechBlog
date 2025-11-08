@@ -3,6 +3,8 @@ package com.tech.entities;
 import jakarta.persistence.*;
 import oracle.sql.TIMESTAMP;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "post_fis")
 public class Post {
@@ -15,7 +17,7 @@ public class Post {
     private String content;
     private String code;
     private String pic;
-    private TIMESTAMP creationTimeStamp;
+    private LocalDate creationTimeStamp;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -59,11 +61,11 @@ public class Post {
         this.pic = pic;
     }
 
-    public TIMESTAMP getCreationTimeStamp() {
+    public LocalDate getCreationTimeStamp() {
         return creationTimeStamp;
     }
 
-    public void setCreationTimeStamp(TIMESTAMP creationTimeStamp) {
+    public void setCreationTimeStamp(LocalDate creationTimeStamp) {
         this.creationTimeStamp = creationTimeStamp;
     }
 

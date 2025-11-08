@@ -146,7 +146,7 @@ footer a:hover { text-decoration: underline; }
 
   <div class="edit-card" data-aos="zoom-in">
     <form action="updateProfileServlet" method="post" enctype="multipart/form-data">
-      <img id="preview" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile Picture" class="profile-pic">
+      <img id="preview" src="${pageContext.request.contextPath}/pics/${sessionScope.path}" alt="Profile Picture" class="profile-pic">
       <label for="profilePic" class="custom-file-label"><i class="fa fa-camera"></i> Change Photo</label>
       <input type="file" id="profilePic" name="profilePic" accept="image/*" onchange="previewImage(event)">
 

@@ -20,17 +20,18 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         Optional<User> user =commonDao.getUserByName(name,email);
+
         if(user.isPresent()){
             if(user.get().getPassword().equals(password.trim())){
                 req.getSession().setAttribute("username",name);
                 req.getSession().setAttribute("email",email);
+                req.getSession().setAttribute("path",user.get().getProfilePicPath());
                 resp.sendRedirect("home.jsp");
             }
             else{
                 Message message = new Message("Incorrect Password","error","");
                 HttpSession session = req.getSession();
                 session.setAttribute("msg",message);
-
                 resp.sendRedirect("login.jsp");
 
             }

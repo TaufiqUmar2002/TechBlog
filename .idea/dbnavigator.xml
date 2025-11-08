@@ -20,7 +20,7 @@ SELECT * FROM CATEGORY_FIS;
 SELECT * FROM POST_FIS;
 truncate table POST_FIS;
 commit;
-
+update USER_BLOG set PROFILEPICPATH ='img1.jpg';
 update POST_FIS set pic ='1.webp';
 
 select * from ALL_CONSTRAINTS where CONSTRAINT_NAME ='UK_P4PH6GRFTB6399MJAF57T4D1H';]]></console>

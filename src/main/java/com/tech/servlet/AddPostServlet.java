@@ -5,6 +5,7 @@ import com.tech.dao.ICommonDao;
 import com.tech.entities.Category;
 import com.tech.entities.Post;
 import com.tech.helper.FileHelper;
+import oracle.sql.TIMESTAMP;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Optional;
 
 @MultipartConfig
@@ -30,15 +33,14 @@ public class AddPostServlet extends HttpServlet {
         Post post = new Post();
         if(part.isPresent()){
             String fileName=part.get().getSubmittedFileName();
-            System.out.println(fileName);
-            String path =req.getRealPath("/")+"img"+ File.separator+fileName;
-            System.out.println(path);
+            String param1 = req.getServletContext().getInitParameter("param1");
+            String path = req.getRealPath("/") + param1 + File.separator + fileName;
             FileHelper.saveFile(part.get().getInputStream(),path);
             post.setPic(fileName);
         }
-
         post.setTitle(title);
         post.setContent(content);
+        post.setCreationTimeStamp(LocalDate.now());
         Category category =commonDao.getCategoryById(id);
         post.setCategory(category);
         commonDao.savePost(post);

@@ -60,4 +60,9 @@
     <exception-type>java.lang.Throwable</exception-type>
     <location>/500.jsp</location>
   </error-page>
+
+  <context-param>
+    <param-name>param1</param-name>
+    <param-value>img</param-value>
+  </context-param>
 </web-app>
