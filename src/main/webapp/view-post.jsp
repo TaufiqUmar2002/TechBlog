@@ -151,9 +151,11 @@
         <% } %>
 
         <div class="d-flex gap-3 mt-4 justify-content-center">
-
-            <a href="like?pid=<%= post.getId() %>" class="btn btn-pill">
-                <i class="fa fa-thumbs-up"></i> Like
+        <%
+          Long count = new CommonDao().likeCount(pid);
+        %>
+            <a href="#" onclick ="doLike(<%=post.getId()%>,<%= post.getUser().getId() %>)"class="btn btn-pill" >
+                <i class="fa fa-thumbs-up"></i> <span id ="like-counter-${post.id}"><%=count%></span> Like
             </a>
 
             <a href="dislike?pid=<%= post.getId() %>" class="btn btn-pill">
@@ -178,6 +180,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script  src="<c:url value='/js/common-particle.js'/>" ></script>
+<script  src="<c:url value='/js/like.js'/>" ></script>
 
 </body>
 </html>

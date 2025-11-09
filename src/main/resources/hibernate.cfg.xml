@@ -43,5 +43,6 @@
         <mapping class="com.tech.entities.User"/>
         <mapping class="com.tech.entities.Category"/>
         <mapping class="com.tech.entities.Post"/>
+        <mapping class="com.tech.entities.Like"/>
     </session-factory>
 </hibernate-configuration>

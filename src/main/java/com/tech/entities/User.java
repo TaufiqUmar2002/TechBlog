@@ -25,6 +25,9 @@ public class User {
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Post> post;
 
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Like> likeList;
+
     public Integer getId() {
         return id;
     }
@@ -119,6 +122,14 @@ public class User {
 
     public void setPost(List<Post> post) {
         this.post = post;
+    }
+
+    public List<Like> getLikeList() {
+        return likeList;
+    }
+
+    public void setLikeList(List<Like> likeList) {
+        this.likeList = likeList;
     }
 }
 

@@ -1,6 +1,7 @@
 package com.tech.dao;
 
 import com.tech.entities.Category;
+import com.tech.entities.Like;
 import com.tech.entities.Post;
 import com.tech.entities.User;
 import com.tech.helper.FactoryProvider;
@@ -70,6 +71,42 @@ public class CommonDao implements ICommonDao {
     public User getUserById(Integer id) {
         Session session = FactoryProvider.getFactory().openSession();
         return  session.find(User.class,id);
+    }
+
+    @Override
+    public Boolean saveLike(Like like) {
+        Boolean flag =true;
+        Session session = FactoryProvider.getFactory().openSession();
+        Transaction txn = session.beginTransaction();
+        session.merge(like);
+        txn.commit();
+        session.close();
+        return flag;
+    }
+
+    @Override
+    public void deleteLike(Integer userId,Integer lId){
+        Session session = FactoryProvider.getFactory().openSession();
+        SelectionQuery<Like> likeSelectionQuery = session.createSelectionQuery("from Like l where l.user.id = :userId",Like.class);
+        likeSelectionQuery.setParameter("userId",userId);
+        likeSelectionQuery.setParameter("lId",lId);
+        Like like =likeSelectionQuery.getSingleResult();
+        session.remove(like);
+    }
+
+    @Override
+    public Long likeCount(Integer postId) {
+        Session session = FactoryProvider.getFactory().openSession();
+        SelectionQuery<Like> likeList= session.createSelectionQuery("from Like l where l.post.id =:pId",Like.class);
+        likeList.setParameter("pId",postId);
+        return (long) likeList.getResultList().size();
+    }
+
+    @Override
+    public Boolean isLikeByUser(Integer id) {
+        Session session = FactoryProvider.getFactory().openSession();
+//        session.get()
+        return false;
     }
 
 

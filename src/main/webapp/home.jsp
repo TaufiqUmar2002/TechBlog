@@ -32,6 +32,26 @@
       margin-bottom: 20px;
       align-items: flex-start;
   }
+  .btn-pill {
+             border-radius: 40px;
+             font-weight: 600;
+             padding: 10px 24px;
+             border: 2px solid #0ea06c;
+             background: #fff !important;
+             color: #0b9c7c !important;
+             transition: 0.2s ease-in-out;
+         }
+
+         .btn-pill:hover {
+              background: #f5f5f5 !important;
+              color: #0ea06c;
+         }
+
+         .btn-pill i {
+             color: #0b9c7c !important;
+             margin-right: 5px;
+         }
+
 
   .thumb-img {
       width: 120px;
@@ -104,6 +124,7 @@
  session.setAttribute("categories",commonDao.getAllCategories());
 
 List<Category>  categories = (List<Category>) session.getAttribute("categories");
+
 %>
 </head>
 <body>
@@ -264,21 +285,21 @@ List<Category>  categories = (List<Category>) session.getAttribute("categories")
 
                             <p class="post-summary">\${summary}...</p>
 
-                            <div class="post-actions">
-                                <button class="btn-modern btn-like">
-                                    <i class="fa fa-thumbs-up"></i> Like
-                                </button>
+                            <div class="post-actions" id ="#id">
+                                <a href="#id"class="btn btn-pill" onclick ="doLike(\${post.id},${post.user.id})" >
+                                    <i class="fa fa-thumbs-up"> <span id ="like-counter-\${post.id}">\${post.likeCount}</span></i> Like
+                                </a>
 
-                                <button class="btn-modern btn-dislike">
+                                <a href="#id"class="btn btn-pill" >
                                     <i class="fa fa-thumbs-down"></i> Dislike
-                                </button>
+                                </a>
 
-                                <button class="btn-modern btn-comment">
+                                <a href="#id"class="btn btn-pill" >
                                     <i class="fa fa-comment"></i> Comment
-                                </button>
+                                </a>
 
                                 <a href="${pageContext.request.contextPath}/view-post.jsp?pid=\${post.id}"
-                                   class="btn-modern btn-view">
+                                   class="btn btn-pill">
                                     <i class="fa fa-eye"></i> View Full
                                 </a>
                             </div>
@@ -300,6 +321,7 @@ List<Category>  categories = (List<Category>) session.getAttribute("categories")
         });
 
 </script>
+<script  src="<c:url value='/js/like.js'/>" ></script>
 
 
 

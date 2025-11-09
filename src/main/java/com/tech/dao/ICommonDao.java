@@ -1,6 +1,7 @@
 package com.tech.dao;
 
 import com.tech.entities.Category;
+import com.tech.entities.Like;
 import com.tech.entities.Post;
 import com.tech.entities.User;
 
@@ -24,5 +25,12 @@ public interface ICommonDao {
     Post getPostById(Integer id);
 
     User getUserById(Integer id);
+
+    Boolean saveLike(Like like);
+    void deleteLike(Integer id,Integer lId);
+
+    Long likeCount(Integer postId);
+
+    Boolean isLikeByUser(Integer id);
 
 }

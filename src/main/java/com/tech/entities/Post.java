@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "post_fis")
@@ -26,6 +27,9 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
+    private List<Like> likeList;
 
     public User getUser() {
         return user;
@@ -89,5 +93,13 @@ public class Post {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<Like> getLikeList() {
+        return likeList;
+    }
+
+    public void setLikeList(List<Like> likeList) {
+        this.likeList = likeList;
     }
 }

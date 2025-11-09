@@ -47,6 +47,14 @@
     <servlet-name>AddPost</servlet-name>
     <url-pattern>/addPostServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>like</servlet-name>
+    <servlet-class>com.tech.servlet.LikeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>like</servlet-name>
+    <url-pattern>/likeServlet</url-pattern>
+  </servlet-mapping>
 
   <error-page>
     <error-code>404</error-code>
