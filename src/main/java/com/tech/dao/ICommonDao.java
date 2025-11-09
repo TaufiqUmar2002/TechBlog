@@ -14,11 +14,13 @@ public interface ICommonDao {
     Optional<User> getUserByName(String name, String email);
 
     List<Category> getAllCategories();
+
     Category getCategoryById(Integer id);
 
     void savePost(Post post);
 
     List<Post> getAllPostByCategory(Integer id);
+
     Post getPostById(Integer id);
 
 }

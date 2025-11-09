@@ -1,7 +1,6 @@
 package com.tech.entities;
 
 import jakarta.persistence.*;
-import oracle.sql.TIMESTAMP;
 
 import java.time.LocalDate;
 

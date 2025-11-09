@@ -2,76 +2,156 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.tech.dao.CommonDao" %>
 <%@ page import="com.tech.entities.Post" %>
-
-
+<%@ page isELIgnored="false" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<%
-    String pidStr = request.getParameter("id");
+    <title>View Post | TechBlog</title>
 
+    <%@ include file="css-links.jsp"%>
 
-%>
-    <title><%=pidStr%> | TechBlog</title>
-
+    <!-- Bootstrap + Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
-
+    <link rel="stylesheet" href="<c:url value='/css/common.css'/>" />
+    <link rel="stylesheet" href="<c:url value='/css/indexs.css'/>" />
 
     <style>
+
+
         .post-wrapper {
             max-width: 900px;
             margin: auto;
-            background: #fff;
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+            background: linear-gradient(135deg, #23c1a1, #21b79c);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+            color: #fff;
         }
 
-        .post-image {
-            width: 100%;
-            max-height: 380px;
-            object-fit: cover;
-            border-radius: 12px;
+        .post-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .post-content {
+            font-size: 18px;
+            line-height: 1.65;
+            color: #fff;
         }
 
         .btn-pill {
             border-radius: 40px;
             font-weight: 600;
-            padding: 10px 18px;
+            padding: 10px 24px;
+            background: #fff !important;
+            color: #0b9c7c !important;
+            border: none;
+            transition: 0.2s ease-in-out;
         }
 
-        .post-category {
-            font-size: 15px;
-            font-weight: 600;
-            color: #007b5e;
+        .btn-pill:hover {
+            background: #f5f5f5 !important;
+            transform: scale(1.04);
+        }
+
+        .btn-pill i {
+            color: #0b9c7c !important;
+            margin-right: 5px;
         }
 
         pre {
-            background: #f7f7f7;
-            padding: 16px;
+            background: rgba(255,255,255,0.3);
             border-radius: 10px;
+            padding: 16px;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.5);
+            font-size: 16px;
         }
+
+
+        .post-image {
+            width: 280px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            float: left;
+            margin-right: 25px;
+        }
+
     </style>
+
+    <%
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        Post post = new CommonDao().getPostById(pid);
+    %>
 </head>
 
-<body class="bg-light">
+<body>
 
 <%@ include file="navbar.jsp" %>
 
 <div class="container py-5">
 
-   <div class="post-wrapper">
+    <div class="post-wrapper">
 
-        <h2 class="fw-bold mb-3">d   ||  <%=pidStr%></h2>
+        <h2 class="post-title mb-3">
+            <%= post.getTitle() %>
+        </h2>
+
+        <p class="post-category mb-3">
+            <i class="fa fa-folder-open me-2"></i>
+            <%= post.getCategory() != null ? post.getCategory().getName() : "Uncategorized" %>
+        </p>
+
+        <%
+            String img = post.getPic();
+            if (img != null && !img.isEmpty()) {
+        %>
+        <img src="<%= request.getContextPath() %>/img/<%= img %>" class="post-image mb-4" alt="Post Image">
+        <% } %>
+
+        <h5 class="fw-semibold">Description</h5>
+        <p class="post-content"><%= post.getContent() %></p>
+
+        <%
+            if (post.getCode() != null && !post.getCode().isEmpty()) {
+        %>
+        <h5 class="fw-semibold mt-4">Full Content</h5>
+        <pre><%= post.getCode() %></pre>
+        <% } %>
+
+        <div class="d-flex gap-3 mt-4 justify-content-center">
+
+            <a href="like?pid=<%= post.getId() %>" class="btn btn-pill">
+                <i class="fa fa-thumbs-up"></i> Like
+            </a>
+
+            <a href="dislike?pid=<%= post.getId() %>" class="btn btn-pill">
+                <i class="fa fa-thumbs-down"></i> Dislike
+            </a>
+            <a href="home.jsp" class="btn btn-pill">
+                            <i class="fa fa-comment"></i> Comment
+            </a>
+
+            <a href="home.jsp" class="btn btn-pill">
+                <i class="fa fa-arrow-left"></i> Back
+            </a>
+
+        </div>
+
+
+    </div>
+
 </div>
 
-
-</div>
+<%@ include file="footer.jsp"%>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

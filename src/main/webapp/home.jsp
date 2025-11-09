@@ -280,7 +280,7 @@ List<Category>  categories = (List<Category>) session.getAttribute("categories")
                                     <i class="fa fa-comment"></i> Comment
                                 </button>
 
-                                <a href="${pageContext.request.contextPath}/view-post.jsp?pid=${post.id}"
+                                <a href="${pageContext.request.contextPath}/view-post.jsp?pid=\${post.id}"
                                    class="btn-modern btn-view">
                                     <i class="fa fa-eye"></i> View Full
                                 </a>
