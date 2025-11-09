@@ -4,7 +4,6 @@ import com.tech.dao.ICommonDao;
 import com.tech.dao.CommonDao;
 import com.tech.entities.User;
 import com.tech.helper.FileHelper;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -14,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -46,7 +45,7 @@ public class SignUpServlet extends HttpServlet {
                 data.put("message","User is already present");
             }else {
                 String path = param2+param3+ File.separator+part.getSubmittedFileName();
-                User user = new User(fullName,email,password,gender,phone,about,part.getSubmittedFileName(), LocalDate.now());
+                User user = new User(fullName,email,password,gender,phone,about,part.getSubmittedFileName(), LocalDateTime.now());
                 FileHelper.saveFile(part.getInputStream(),path);
                 userDao.saveUser(user);
                 resp.sendRedirect("login.jsp");

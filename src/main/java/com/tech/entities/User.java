@@ -3,6 +3,7 @@ package com.tech.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 
@@ -20,7 +21,7 @@ public class User {
     private Long phoneNumber;
     private String about;
     private String profilePicPath;
-    private LocalDate joinDate;
+    private LocalDateTime joinDate;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Post> post;
 
@@ -31,7 +32,7 @@ public class User {
     public  User(){
     }
 
-    public User(String name, String email, String password, String gender, Long phoneNumber, String about,String profilePicPath,LocalDate joinDate) {
+    public User(String name, String email, String password, String gender, Long phoneNumber, String about,String profilePicPath,LocalDateTime joinDate) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -42,11 +43,11 @@ public class User {
         this.joinDate = joinDate;
     }
 
-    public LocalDate getJoinDate() {
+    public LocalDateTime getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(LocalDate joinDate) {
+    public void setJoinDate(LocalDateTime joinDate) {
         this.joinDate = joinDate;
     }
 

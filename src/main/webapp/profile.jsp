@@ -3,6 +3,8 @@
 <%@ page isELIgnored="false" %>
 <%@ page import="com.tech.dao.CommonDao" %>
 <%@ page import="com.tech.entities.User" %>
+<%@ page import ="java.time.format.DateTimeFormatter"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -124,12 +126,28 @@ p {
      user = (User) request.getSession().getAttribute("user");
    }
  %>
+<%
+    Object ts = user.getJoinDate();
+    String formattedDate = "";
+
+    if (ts instanceof java.time.LocalDateTime) {
+        formattedDate = ((java.time.LocalDateTime) ts)
+                .format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+    } else if (ts instanceof java.time.LocalDate) {
+        formattedDate = ((java.time.LocalDate) ts)
+                .format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+    } else if (ts instanceof java.sql.Timestamp) {
+        formattedDate = ((java.sql.Timestamp) ts).toLocalDateTime()
+                .format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
+    }
+%>
+
   <!-- Profile Card -->
   <div class="profile-card" data-aos="zoom-in" style="z-index: 1;">
     <img src="${pageContext.request.contextPath}/pics/<%=user.getProfilePicPath()%>" alt="Profile Picture" class="profile-pic">
     <h3>${sessionScope.username}</h3>
     <p><i class="fa fa-envelope me-2"></i><%=user.getName()%></p>
-    <p><i class="fa fa-calendar me-2"></i>Member since: <span><%=user.getJoinDate()%></span></p>
+    <p><i class="fa fa-calendar me-2"></i>Member since: <span><%= formattedDate %></span></p>
     <hr style="border-color: rgba(255,255,255,0.3);">
     <p><%=user.getAbout()%></p>
        <a href="home.jsp" class="btn btn-edit mt-3"><i class="fa fa-pen me-2"></i>Close</a>
