@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
+<%@ page import="com.tech.dao.CommonDao" %>
+<%@ page import="com.tech.entities.User" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,15 +113,25 @@ p {
 <div class="position-relative flex-grow-1 d-flex justify-content-center align-items-center">
   <!-- Particles Background -->
   <div id="particles-js" class="position-absolute top-0 start-0 w-100 h-100"></div>
-
+ <%
+   String pid = request.getParameter("pid");
+   User user=null;
+   if(pid !=null){
+      int id = Integer.parseInt(pid);
+      user = new CommonDao().getUserById(id);
+   }
+   else{
+     user = (User) request.getSession().getAttribute("user");
+   }
+ %>
   <!-- Profile Card -->
   <div class="profile-card" data-aos="zoom-in" style="z-index: 1;">
-    <img src="${pageContext.request.contextPath}/pics/${sessionScope.user.profilePicPath}" alt="Profile Picture" class="profile-pic">
+    <img src="${pageContext.request.contextPath}/pics/<%=user.getProfilePicPath()%>" alt="Profile Picture" class="profile-pic">
     <h3>${sessionScope.username}</h3>
-    <p><i class="fa fa-envelope me-2"></i>${sessionScope.user.name}</p>
-    <p><i class="fa fa-calendar me-2"></i>Member since: <span>${sessionScope.user.joinDate}</span></p>
+    <p><i class="fa fa-envelope me-2"></i><%=user.getName()%></p>
+    <p><i class="fa fa-calendar me-2"></i>Member since: <span><%=user.getJoinDate()%></span></p>
     <hr style="border-color: rgba(255,255,255,0.3);">
-    <p>${sessionScope.user.about}</p>
+    <p><%=user.getAbout()%></p>
        <a href="home.jsp" class="btn btn-edit mt-3"><i class="fa fa-pen me-2"></i>Close</a>
        <a href="edit-profile.jsp" class="btn btn-edit mt-3"><i class="fa fa-pen me-2"></i>Edit Profile</a>
 

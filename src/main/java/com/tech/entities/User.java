@@ -3,6 +3,7 @@ package com.tech.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Random;
 
 @Entity
@@ -20,6 +21,8 @@ public class User {
     private String about;
     private String profilePicPath;
     private LocalDate joinDate;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Post> post;
 
     public Integer getId() {
         return id;
@@ -46,6 +49,8 @@ public class User {
     public void setJoinDate(LocalDate joinDate) {
         this.joinDate = joinDate;
     }
+
+
 
     public void setId(Integer id) {
         this.id = id;
@@ -105,6 +110,14 @@ public class User {
 
     public void setProfilePicPath(String profilePicPath) {
         this.profilePicPath = profilePicPath;
+    }
+
+    public List<Post> getPost() {
+        return post;
+    }
+
+    public void setPost(List<Post> post) {
+        this.post = post;
     }
 }
 

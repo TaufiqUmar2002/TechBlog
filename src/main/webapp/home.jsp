@@ -17,7 +17,6 @@
    <link rel="stylesheet" href="<c:url value='/css/common.css'/>" />
    <link rel="stylesheet" href="<c:url value='/css/home.css'/>" />
 <style>
-  /* ✅ Post container */
   #postsContainer {
       background: #0fa57a; /* your green base */
       padding: 20px;
@@ -135,7 +134,6 @@ List<Category>  categories = (List<Category>) session.getAttribute("categories")
 
     <div class="row">
 
-        <!-- ✅ LEFT CATEGORIES -->
         <div class="col-md-3">
             <div class="list-group" id="categoryList">
 
@@ -158,7 +156,6 @@ List<Category>  categories = (List<Category>) session.getAttribute("categories")
             </div>
         </div>
 
-        <!-- ✅ RIGHT POSTS PANEL -->
         <div class="col-md-9">
             <div id="postsContainer">
                 Select a category

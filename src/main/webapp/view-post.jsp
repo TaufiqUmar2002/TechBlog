@@ -3,6 +3,7 @@
 <%@ page import="com.tech.dao.CommonDao" %>
 <%@ page import="com.tech.entities.Post" %>
 <%@ page isELIgnored="false" %>
+<%@ page import ="java.time.format.DateTimeFormatter"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +100,30 @@
 <div class="container py-5">
 
     <div class="post-wrapper">
+         <div class="d-flex align-items-center gap-3 mb-3 text-muted" style="font-size:15px;">
+           <span class="navbar-text me-3 d-flex align-items-center">
+              <i class="fa fa-user-circle me-1"></i>
+                <b><a class="nav-link p-0" href="profile.jsp?pid=<%= post.getUser().getId() %>"><%= post.getUser() != null ? post.getUser().getName() : "Unknown" %></a></b>
+           </span>
 
+            <span>.</span>
+            <span>
+                   <i class="fa fa-clock me-1"></i>
+                   <%
+                       Object ts = post.getCreationTimeStamp();
+                       String formattedDate = "";
+
+                       if (ts instanceof java.time.LocalDateTime) {
+                           formattedDate = ((java.time.LocalDateTime) ts)
+                                   .format(DateTimeFormatter.ofPattern("dd-MMM-yyyy hh:mm a"));
+                       } else if (ts instanceof java.time.LocalDate) {
+                           formattedDate = ((java.time.LocalDate) ts)
+                                   .format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+                       }
+                   %>
+                   <%= formattedDate %>
+               </span>
+         </div>
         <h2 class="post-title mb-3">
             <%= post.getTitle() %>
         </h2>
@@ -153,5 +177,7 @@
 <%@ include file="footer.jsp"%>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script  src="<c:url value='/js/common-particle.js'/>" ></script>
+
 </body>
 </html>

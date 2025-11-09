@@ -66,5 +66,11 @@ public class CommonDao implements ICommonDao {
         return session.find(Post.class,id);
     }
 
+    @Override
+    public User getUserById(Integer id) {
+        Session session = FactoryProvider.getFactory().openSession();
+        return  session.find(User.class,id);
+    }
+
 
 }

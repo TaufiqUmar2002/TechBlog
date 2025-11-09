@@ -3,6 +3,7 @@ package com.tech.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "post_fis")
@@ -16,10 +17,24 @@ public class Post {
     private String content;
     private String code;
     private String pic;
-    private LocalDate creationTimeStamp;
+    @Column(name = "creation_time_stamp")
+    private LocalDateTime creationTimeStamp;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -60,11 +75,11 @@ public class Post {
         this.pic = pic;
     }
 
-    public LocalDate getCreationTimeStamp() {
+    public LocalDateTime  getCreationTimeStamp() {
         return creationTimeStamp;
     }
 
-    public void setCreationTimeStamp(LocalDate creationTimeStamp) {
+    public void setCreationTimeStamp(LocalDateTime  creationTimeStamp) {
         this.creationTimeStamp = creationTimeStamp;
     }
 

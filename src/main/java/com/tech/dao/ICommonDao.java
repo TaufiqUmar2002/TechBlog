@@ -23,4 +23,6 @@ public interface ICommonDao {
 
     Post getPostById(Integer id);
 
+    User getUserById(Integer id);
+
 }
