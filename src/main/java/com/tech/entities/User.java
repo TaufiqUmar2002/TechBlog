@@ -26,6 +26,9 @@ public class User {
     private List<Post> post;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Like> likeList;
 
     public Integer getId() {
@@ -54,7 +57,13 @@ public class User {
         this.joinDate = joinDate;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
 
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public void setId(Integer id) {
         this.id = id;

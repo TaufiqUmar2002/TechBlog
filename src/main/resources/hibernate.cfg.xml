@@ -44,5 +44,6 @@
         <mapping class="com.tech.entities.Category"/>
         <mapping class="com.tech.entities.Post"/>
         <mapping class="com.tech.entities.Like"/>
+        <mapping class="com.tech.entities.Comment"/>
     </session-factory>
 </hibernate-configuration>

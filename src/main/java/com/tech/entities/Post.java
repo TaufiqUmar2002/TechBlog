@@ -24,6 +24,9 @@ public class Post {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Comment> comments;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -101,5 +104,13 @@ public class Post {
 
     public void setLikeList(List<Like> likeList) {
         this.likeList = likeList;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

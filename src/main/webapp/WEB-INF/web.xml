@@ -56,6 +56,24 @@
     <url-pattern>/likeServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>comment</servlet-name>
+    <servlet-class>com.tech.servlet.CommentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>comment</servlet-name>
+    <url-pattern>/getComments</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>addComment</servlet-name>
+    <servlet-class>com.tech.servlet.AddCommentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addComment</servlet-name>
+    <url-pattern>/addCommentServlet</url-pattern>
+  </servlet-mapping>
+
   <error-page>
     <error-code>404</error-code>
     <location>/404.jsp</location>

@@ -1,9 +1,6 @@
 package com.tech.dao;
 
-import com.tech.entities.Category;
-import com.tech.entities.Like;
-import com.tech.entities.Post;
-import com.tech.entities.User;
+import com.tech.entities.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,5 +29,9 @@ public interface ICommonDao {
     Long likeCount(Integer postId);
 
     Boolean isLikeByUser(Integer id);
+
+    List<Comment> getCommentsByPost(int postId);
+
+    void addComment(Comment c);
 
 }

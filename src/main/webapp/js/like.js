@@ -1,9 +1,11 @@
-function doLike(pid,uid){
+let commentVisible = false;
+
+function doLike(pid,uid,operation){
  console.log(pid + " , "+uid)
  const d = {
   pid:pid,
   uid:uid,
-  operation:"like"
+  operation:operation
   }
   console.log(d)
   $.ajax({

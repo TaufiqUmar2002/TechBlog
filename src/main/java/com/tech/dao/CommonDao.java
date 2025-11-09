@@ -1,9 +1,6 @@
 package com.tech.dao;
 
-import com.tech.entities.Category;
-import com.tech.entities.Like;
-import com.tech.entities.Post;
-import com.tech.entities.User;
+import com.tech.entities.*;
 import com.tech.helper.FactoryProvider;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -107,6 +104,23 @@ public class CommonDao implements ICommonDao {
         Session session = FactoryProvider.getFactory().openSession();
 //        session.get()
         return false;
+    }
+    @Override
+    public List<Comment> getCommentsByPost(int postId) {
+        try(Session s = FactoryProvider.getFactory().openSession()){
+            return s.createQuery("from Comment c where c.post.id = :pid order by c.createdAt desc", Comment.class)
+                    .setParameter("pid", postId)
+                    .list();
+        }
+    }
+
+    @Override
+    public void addComment(Comment c) {
+        Session s = FactoryProvider.getFactory().openSession();
+        Transaction tx = s.beginTransaction();
+        s.persist(c);
+        tx.commit();
+        s.close();
     }
 
 

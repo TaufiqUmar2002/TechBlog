@@ -16,7 +16,7 @@
     <!-- Bootstrap + Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v24.0&appId=APP_ID"></script>
     <link rel="stylesheet" href="<c:url value='/css/common.css'/>" />
     <link rel="stylesheet" href="<c:url value='/css/indexs.css'/>" />
 
@@ -84,6 +84,51 @@
             float: left;
             margin-right: 25px;
         }
+        .comment-wrapper {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 3px 14px rgba(0,0,0,0.15);
+        }
+
+        .comment-input {
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            padding: 12px;
+            font-size: 15px;
+        }
+
+        .btn-add-comment {
+            background: #16a085;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .btn-add-comment:hover {
+            background: #0f8067;
+        }
+
+        .comment-item {
+            background: #f5fdf8;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid #16a085;
+        }
+
+        .comment-meta {
+            font-size: 12px;
+            color: #6b6b6b;
+            margin-bottom: 6px;
+        }
+        .no-comment {
+            color: #999;
+            font-style: italic;
+        }
 
     </style>
 
@@ -150,34 +195,115 @@
         <pre><%= post.getCode() %></pre>
         <% } %>
 
-        <div class="d-flex gap-3 mt-4 justify-content-center">
+        <div class="d-flex gap-3 mt-4 justify-content-center" id ="#id">
         <%
           Long count = new CommonDao().likeCount(pid);
         %>
-            <a href="#" onclick ="doLike(<%=post.getId()%>,<%= post.getUser().getId() %>)"class="btn btn-pill" >
-                <i class="fa fa-thumbs-up"></i> <span id ="like-counter-${post.id}"><%=count%></span> Like
+            <a href="#id" onclick ="doLike(<%=post.getId()%>,<%= post.getUser().getId() %>,'like')" class="btn btn-pill" >
+                <i class="fa fa-thumbs-up"></i> <span id ="like-counter-<%=post.getId()%>"><%=count%></span> Like
             </a>
 
-            <a href="dislike?pid=<%= post.getId() %>" class="btn btn-pill">
-                <i class="fa fa-thumbs-down"></i> Dislike
+            <a href="#id" onclick ="doLike(<%=post.getId()%>,<%= post.getUser().getId() %>,'dislike')" class="btn btn-pill">
+                <i class="fa fa-thumbs-down"><span id ="like-counter-<%=post.getId()%>"> <%=count%></i> Dislike
             </a>
-            <a href="home.jsp" class="btn btn-pill">
+            <a href="#id"  class="btn btn-pill" onclick="toggleComments()"  >
                             <i class="fa fa-comment"></i> Comment
             </a>
-
             <a href="home.jsp" class="btn btn-pill">
                 <i class="fa fa-arrow-left"></i> Back
             </a>
 
         </div>
+    </div>
+</div>
+<div id="comment-wrapper" class="comment-wrapper mt-4" style="display:none;">
 
+    <h5 class="fw-bold text-secondary mb-3">Comments</h5>
 
+    <div class="mb-3">
+        <textarea class="form-control comment-input" id="comment-input"
+           rows="3" placeholder="Write your thoughts..."></textarea>
     </div>
 
+    <button class="btn btn-add-comment" onclick="addComment(<%= post.getId() %>)">
+        Add Comment
+    </button>
+
+    <div id="comments-container" class="mt-3 text-secondary small">
+        <p class="no-comment">No comments yet</p>
+    </div>
 </div>
 
-<%@ include file="footer.jsp"%>
 
+<%@ include file="footer.jsp"%>
+  <script>
+     const ctx = "${pageContext.request.contextPath}";
+
+   function toggleComments() {
+       const box = document.getElementById("comment-wrapper");
+
+       if (!commentVisible) {
+           box.style.display = "block";
+           loadComments(<%= post.getId() %>);
+           box.scrollIntoView({ behavior: "smooth" });
+       } else {
+           box.style.display = "none";
+       }
+
+       commentVisible = !commentVisible;
+   }
+   function loadComments(pid) {
+       fetch(`getComments?pid=` + pid)
+           .then(res => res.json())
+           .then(list => {
+
+               let box = document.getElementById("comments-container");
+
+               if (!list || list.length === 0) {
+                   box.innerHTML = `<p class="no-comment">No comments yet</p>`;
+                   return;
+               }
+
+               let html = "";
+               list.forEach(c => {
+                   html += `
+                   <div class="comment-item">
+                       <div class="comment-meta">
+                           <strong>\${c.user}</strong> • \${c.time}
+                       </div>
+                       <div>\${c.text}</div>
+                   </div>`;
+               });
+
+               box.innerHTML = html;
+           });
+   }
+function addComment(pid) {
+
+    let text = $("#comment-input").val().trim();
+    if (text === "") return;
+        console.log(text)
+
+    $.ajax({
+        url: ctx + "/addCommentServlet",
+        type: "POST",
+        data: {
+            pid: pid,
+            text: text
+        },
+        success: function (res) {
+            $("#comment-input").val("");   // clear textbox
+            loadComments(pid);             // reload comments
+        },
+        error: function (err) {
+            console.log("Error:", err);
+        }
+    });
+}
+
+
+
+    </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script  src="<c:url value='/js/common-particle.js'/>" ></script>
 <script  src="<c:url value='/js/like.js'/>" ></script>
